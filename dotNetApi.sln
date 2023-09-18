@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dotNetApi", "dotNetApi\dotNetApi.csproj", "{6167F3D7-0B04-4E41-8D68-579A8485D48B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SchedulerAPI", "SchedulerAPI\SchedulerAPI.csproj", "{6167F3D7-0B04-4E41-8D68-579A8485D48B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
