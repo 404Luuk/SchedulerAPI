@@ -2,7 +2,7 @@
 
 namespace dotNetApi.DTOs;
 
-public class NoteForCreation
+public class NoteForCreationDTO
 {
     [Required]
     public string Title { get; set; }
