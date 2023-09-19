@@ -4,8 +4,10 @@ using dotNetApi.IRepository;
 
 namespace dotNetApi.Repository;
 
-public class NoteRepository : RepositoryBase<Note>,INoteRepository
+public class NoteRepository : RepositoryBase<Note>, INoteRepository
 {
+    private readonly IRepositoryManager _repository;
+    
     public NoteRepository(DatabaseContext context) : base(context) { }   
     
     public Task<IEnumerable<Note>> GetNotesAsync()
@@ -18,14 +20,9 @@ public class NoteRepository : RepositoryBase<Note>,INoteRepository
         throw new NotImplementedException();
     }
 
-    public Task<Note> CreateNoteAsync(Note note)
+    public void CreateNoteAsync(Note note)
     {
-        if (note == null)
-        {
-            throw new ArgumentNullException(nameof(note));
-        }
-        CreateNoteAsync(note);
-        return (Task<Note>)Task.CompletedTask;
+        CreateAsync(note);
     }
 
     public Task<Note> UpdateNoteAsync(Note note)
