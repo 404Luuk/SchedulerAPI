@@ -2,7 +2,7 @@
 
 public record NoteDTO
 {
-    public int Id { get; init; }
+    public Guid Id { get; init; }
     public string Title { get; init; }
     public string Content { get; init; }
     public DateTime CreatedAt { get; init; }

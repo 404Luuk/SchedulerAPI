@@ -1,4 +1,6 @@
-﻿using dotNetApi.DTOs;
+﻿using AutoMapper;
+using dotNetApi.DTOs;
+using dotNetApi.Entities;
 using dotNetApi.IRepository;
 using dotNetApi.IServices;
 
@@ -6,11 +8,13 @@ namespace dotNetApi.Services;
 
 public class NoteService: INoteService
 {
-    private readonly INoteRepository _repository;
+    private readonly IRepositoryManager _repository;
+    private readonly IMapper _mapper;
     
-    public NoteService(INoteRepository repository)
+    public NoteService(IRepositoryManager repository, IMapper mapper)
     {
         _repository = repository;
+        _mapper = mapper;
     }
     
     public Task<IEnumerable<NoteDTO>> GetNotesAsync()
@@ -23,9 +27,14 @@ public class NoteService: INoteService
         throw new NotImplementedException();
     }
 
-    public Task<NoteDTO> CreateNoteAsync(NoteForCreationDTO noteForCreationDTO)
+    public async Task<NoteDTO> CreateNoteAsync(NoteForCreationDTO noteForCreationDto)
     {
-        throw new NotImplementedException();
+        var noteEntity = _mapper.Map<Note>(noteForCreationDto);
+
+        _repository.NoteRepository.CreateNoteAsync(noteEntity);
+        await _repository.SaveAsync();
+        
+        return _mapper.Map<NoteDTO>(noteEntity);
     }
 
     public Task<NoteDTO> UpdateNoteAsync(int id, NoteForUpdateDTO noteForUpdateDTO)

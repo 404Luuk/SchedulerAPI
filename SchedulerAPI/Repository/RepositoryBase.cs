@@ -4,11 +4,11 @@ using dotNetApi.IRepository;
 
 namespace dotNetApi.Repository;
 
-public class RepositoryBase<T> : IRepositoryBase<T> where T : class
+public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class
 {
-    protected DatabaseContext _context;
-    
-    public RepositoryBase(DatabaseContext context)
+    private readonly DatabaseContext _context;
+
+    protected RepositoryBase(DatabaseContext context)
     {
         _context = context;
     }
